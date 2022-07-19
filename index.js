@@ -16,6 +16,12 @@ async function run(){
     try{
         await client.connect();
         const studentCollection = client.db('stu_info').collection('students');
+
+        app.get('/students', async (req,res) => {
+            const query = {};
+            const students = await studentCollection.find(query).toArray();
+            res.send(students);
+        });
     }
     finally{
 
